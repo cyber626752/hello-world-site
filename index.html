@@ -3,264 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Handyman - Мастер на все руки</title>
-    <!-- Подключаем современные шрифты и иконки -->
+    <title>Оформление заказа - Handyman</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
             --primary: #ff5e14;
-            --primary-hover: #e04c0b;
             --dark: #0f172a;
             --text: #334155;
             --bg: #f8fafc;
             --surface: #ffffff;
             --radius: 16px;
-            --shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
         }
 
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body { color: var(--text); background-color: var(--bg); line-height: 1.6; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        /* Шапка */
-        header {
-            background-color: var(--surface);
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky; top: 0; z-index: 100;
-        }
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 24px; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 10px; }
-        .logo i { color: var(--primary); }
-        .contact-info { display: flex; align-items: center; gap: 24px; }
-        .phone { font-size: 18px; font-weight: 600; color: var(--dark); text-decoration: none; transition: color 0.3s; }
-        .phone:hover { color: var(--primary); }
-
-        /* Карточки услуг */
-        .services { padding: 80px 0 40px; }
-        .section-title { text-align: center; margin-bottom: 50px; font-size: 36px; color: var(--dark); font-weight: 700; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .service-card {
-            background: var(--surface); padding: 40px 30px; border-radius: var(--radius);
-            text-align: center; box-shadow: var(--shadow); transition: all 0.3s ease;
-            border: 1px solid #f1f5f9;
-        }
-        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.12); border-color: #e2e8f0; }
-        .service-card i { font-size: 48px; color: var(--primary); margin-bottom: 20px; }
-        .service-card h3 { color: var(--dark); margin-bottom: 15px; font-size: 22px; }
-
-        /* Калькулятор */
-        .calculator-section { padding: 40px 0 80px; }
-        .calc-wrapper {
-            max-width: 800px; margin: 0 auto; background: var(--surface);
-            padding: 50px; border-radius: var(--radius); box-shadow: var(--shadow);
-        }
-        .form-group {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9;
-        }
-        .form-group:last-of-type { border-bottom: none; }
-        .label-text { display: flex; flex-direction: column; }
-        .label-text span.title { font-size: 16px; font-weight: 600; color: var(--dark); }
-        .label-text span.price { font-size: 14px; color: var(--primary); margin-top: 4px; font-weight: 600; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { color: var(--text); background-color: var(--bg); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
         
-        input[type="number"] {
-            width: 120px; padding: 12px; border: 2px solid #e2e8f0;
-            border-radius: 8px; font-size: 18px; text-align: center;
-            outline: none; transition: border-color 0.3s; color: var(--dark); font-weight: 600;
+        .checkout-container {
+            background: var(--surface); max-width: 600px; width: 100%;
+            padding: 40px; border-radius: var(--radius);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
         }
-        input[type="number"]:focus { border-color: var(--primary); }
 
-        /* Ползунок срочности */
-        .range-container { width: 100%; margin-top: 15px; }
-        .range-labels { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px; font-weight: 600; color: #64748b; }
-        input[type="range"] { -webkit-appearance: none; width: 100%; background: transparent; }
-        input[type="range"]::-webkit-slider-runnable-track { width: 100%; height: 6px; background: #e2e8f0; border-radius: 3px; cursor: pointer; }
-        input[type="range"]::-webkit-slider-thumb {
-            height: 24px; width: 24px; border-radius: 50%; background: var(--primary);
-            cursor: pointer; -webkit-appearance: none; margin-top: -9px;
-            border: 4px solid var(--surface); box-shadow: 0 2px 10px rgba(255, 94, 20, 0.4);
-            transition: transform 0.2s;
-        }
-        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+        .back-link { color: var(--text); text-decoration: none; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; transition: color 0.3s; }
+        .back-link:hover { color: var(--primary); }
 
-        /* Итог и кнопка */
-        .result-box {
-            background-color: var(--dark); color: white; padding: 30px;
-            border-radius: var(--radius); display: flex; justify-content: space-between;
-            align-items: center; margin-top: 40px;
-        }
-        .result-box h3 { font-size: 20px; font-weight: 400; color: #cbd5e1; }
-        .result-value { font-size: 36px; font-weight: 700; color: var(--primary); }
+        h2 { color: var(--dark); margin-bottom: 25px; font-size: 28px; }
 
-        .btn-main {
-            background-color: var(--primary); color: white; border: none;
-            padding: 18px 30px; font-size: 18px; font-weight: 600;
-            border-radius: 8px; cursor: pointer; transition: all 0.3s;
-            text-decoration: none; display: inline-block; text-align: center;
+        .order-summary {
+            background: var(--bg); padding: 20px; border-radius: 12px; margin-bottom: 30px;
+            border: 1px solid #e2e8f0;
         }
-        .btn-main:hover { background-color: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 94, 20, 0.3); }
-        .btn-order { width: 100%; margin-top: 20px; font-size: 20px; padding: 20px; }
-        .btn-order:disabled { background-color: #cbd5e1; cursor: not-allowed; box-shadow: none; transform: none; }
+        .order-summary h3 { font-size: 16px; margin-bottom: 15px; color: var(--dark); }
+        .service-list { list-style: none; margin-bottom: 15px; }
+        .service-list li { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed #cbd5e1; }
+        .total-price { font-size: 24px; font-weight: 700; color: var(--primary); display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #e2e8f0; padding-top: 15px; }
 
-        @media (max-width: 768px) {
-            .header-content { flex-direction: column; gap: 15px; }
-            .form-group { flex-direction: column; align-items: flex-start; gap: 15px; }
-            input[type="number"] { width: 100%; }
-            .result-box { flex-direction: column; text-align: center; gap: 15px; }
-            .calc-wrapper { padding: 25px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; color: var(--dark); }
+        .form-group input { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; outline: none; transition: 0.3s; }
+        .form-group input:focus { border-color: var(--primary); }
+
+        .btn-submit {
+            width: 100%; background: var(--primary); color: white; border: none;
+            padding: 16px; border-radius: 8px; font-size: 18px; font-weight: 600;
+            cursor: pointer; transition: 0.3s; margin-top: 10px;
         }
+        .btn-submit:hover { background: #e04c0b; transform: translateY(-2px); }
+        
+        .empty-state { text-align: center; display: none; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container header-content">
-            <div class="logo"><i class="fas fa-toolbox"></i> HandymanPro</div>
-            <div class="contact-info">
-                <a href="tel:+79991234567" class="phone">+7 (999) 123-45-67</a>
-            </div>
-        </div>
-    </header>
-
-    <section class="services">
-        <div class="container">
-            <h2 class="section-title">Выберите нужные услуги</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-faucet-drip"></i>
-                    <h3>Сантехник</h3>
-                    <p>Устранение течей, установка раковин, унитазов, труб и смесителей.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Электрик</h3>
-                    <p>Ремонт розеток, замена проводки, установка люстр и автоматов.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-couch"></i>
-                    <h3>Сборка мебели</h3>
-                    <p>Сборка шкафов, кухонь, кроватей и офисной мебели любой сложности.</p>
+    <div class="checkout-container">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Вернуться к калькулятору</a>
+        
+        <div id="orderContent">
+            <h2>Оформление заявки</h2>
+            
+            <div class="order-summary">
+                <h3>Выбранные услуги (вакансии мастеров):</h3>
+                <ul class="service-list" id="servicesList">
+                    <!-- Заполняется через JS -->
+                </ul>
+                <div class="total-price">
+                    <span>К оплате:</span>
+                    <span id="finalPriceDisplay">0 ₽</span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section class="calculator-section">
-        <div class="container">
-            <h2 class="section-title">Рассчитайте стоимость</h2>
-            <div class="calc-wrapper">
-                <form id="calcForm">
-                    <div class="form-group">
-                        <div class="label-text">
-                            <span class="title">Сантехнические точки</span>
-                            <span class="price">1 500 ₽ за шт.</span>
-                        </div>
-                        <!-- Убран value="0", добавлен placeholder -->
-                        <input type="number" id="plumbingQty" min="0" placeholder="Например, 2">
-                    </div>
-
-                    <div class="form-group">
-                        <div class="label-text">
-                            <span class="title">Электроточки (розетки/выключатели)</span>
-                            <span class="price">800 ₽ за шт.</span>
-                        </div>
-                        <input type="number" id="electricQty" min="0" placeholder="Например, 5">
-                    </div>
-
-                    <div class="form-group">
-                        <div class="label-text">
-                            <span class="title">Сборка мебели (часы работы)</span>
-                            <span class="price">1 000 ₽ в час</span>
-                        </div>
-                        <input type="number" id="furnitureHours" min="0" placeholder="Например, 3">
-                    </div>
-
-                    <div class="form-group" style="flex-direction: column; align-items: stretch;">
-                        <div class="label-text" style="margin-bottom: 20px;">
-                            <span class="title">Срочность выезда мастера</span>
-                        </div>
-                        <div class="range-container">
-                            <div class="range-labels">
-                                <span id="lbl-1">В течение 3 дней</span>
-                                <span id="lbl-2">Завтра (+20%)</span>
-                                <span id="lbl-3" style="color: var(--primary);">Срочно, сейчас (+50%)</span>
-                            </div>
-                            <input type="range" id="urgencyRange" min="1" max="3" value="1" step="1">
-                        </div>
-                    </div>
-                </form>
-
-                <div class="result-box">
-                    <h3>Итоговая стоимость:</h3>
-                    <div class="result-value"><span id="totalPrice">0</span> ₽</div>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label>Ваше имя</label>
+                    <input type="text" placeholder="Иван Иванов" required>
                 </div>
-
-                <button class="btn-main btn-order" id="btnOrder" disabled onclick="goToOrder()">Перейти к оформлению заказа</button>
-            </div>
+                <div class="form-group">
+                    <label>Номер телефона</label>
+                    <input type="tel" placeholder="+7 (999) 000-00-00" required>
+                </div>
+                <div class="form-group">
+                    <label>Адрес (Улица, дом, квартира)</label>
+                    <input type="text" placeholder="г. Москва, ул. Пушкина, д. 10, кв. 5" required>
+                </div>
+                <button type="submit" class="btn-submit">Подтвердить заказ</button>
+            </form>
         </div>
-    </section>
+
+        <div class="empty-state" id="emptyState">
+            <h2>Корзина пуста</h2>
+            <p>Вы не выбрали ни одной услуги.</p>
+            <br>
+            <a href="index.html" class="btn-submit" style="text-decoration: none; display: inline-block;">Вернуться на главную</a>
+        </div>
+    </div>
 
     <script>
-        const PRICE_PLUMBING = 1500;
-        const PRICE_ELECTRIC = 800;
-        const PRICE_FURNITURE = 1000;
-
-        const inputs = document.querySelectorAll('#calcForm input');
-        const btnOrder = document.getElementById('btnOrder');
-
-        // Автоматический расчет при любом изменении
-        inputs.forEach(input => {
-            input.addEventListener('input', calculateTotal);
-        });
-
-        function calculateTotal() {
-            const plumb = parseInt(document.getElementById('plumbingQty').value) || 0;
-            const elec = parseInt(document.getElementById('electricQty').value) || 0;
-            const furn = parseInt(document.getElementById('furnitureHours').value) || 0;
-            const urgency = parseInt(document.getElementById('urgencyRange').value);
-
-            let baseTotal = (plumb * PRICE_PLUMBING) + (elec * PRICE_ELECTRIC) + (furn * PRICE_FURNITURE);
+        // При загрузке страницы достаем данные из памяти браузера
+        window.onload = function() {
+            const orderDataString = localStorage.getItem('handyman_order');
             
-            let multiplier = 1;
-            if (urgency === 2) multiplier = 1.2;
-            if (urgency === 3) multiplier = 1.5;
+            if (orderDataString) {
+                const orderData = JSON.parse(orderDataString);
+                
+                // Если заказ на 0 рублей, показываем пустое состояние
+                if (orderData.total === "0" || !orderData.total) {
+                    document.getElementById('orderContent').style.display = 'none';
+                    document.getElementById('emptyState').style.display = 'block';
+                    return;
+                }
 
-            let finalTotal = Math.round(baseTotal * multiplier);
+                const list = document.getElementById('servicesList');
+                let urgencyText = "В течение 3 дней";
+                if (orderData.urgency === 2) urgencyText = "Завтра (+20%)";
+                if (orderData.urgency === 3) urgencyText = "Срочно, сейчас (+50%)";
 
-            // Обновляем текст на экране
-            document.getElementById("totalPrice").innerText = finalTotal.toLocaleString('ru-RU');
-
-            // Кнопка активна только если выбрана хотя бы одна услуга
-            if (finalTotal > 0) {
-                btnOrder.disabled = false;
+                // Добавляем мастеров, которых выбрал клиент
+                if (orderData.plumbing > 0) {
+                    list.innerHTML += `<li><span>Мастер-сантехник</span> <span>${orderData.plumbing} точек</span></li>`;
+                }
+                if (orderData.electric > 0) {
+                    list.innerHTML += `<li><span>Мастер-электрик</span> <span>${orderData.electric} точек</span></li>`;
+                }
+                if (orderData.furniture > 0) {
+                    list.innerHTML += `<li><span>Мастер по мебели</span> <span>${orderData.furniture} часов</span></li>`;
+                }
+                
+                list.innerHTML += `<li><span>Срочность:</span> <span>${urgencyText}</span></li>`;
+                
+                // Устанавливаем цену
+                document.getElementById('finalPriceDisplay').innerText = orderData.total + ' ₽';
             } else {
-                btnOrder.disabled = true;
+                document.getElementById('orderContent').style.display = 'none';
+                document.getElementById('emptyState').style.display = 'block';
             }
-        }
+        };
 
-        // Сохраняем данные и переходим на страницу оформления
-        function goToOrder() {
-            const orderData = {
-                plumbing: parseInt(document.getElementById('plumbingQty').value) || 0,
-                electric: parseInt(document.getElementById('electricQty').value) || 0,
-                furniture: parseInt(document.getElementById('furnitureHours').value) || 0,
-                urgency: parseInt(document.getElementById('urgencyRange').value),
-                total: document.getElementById("totalPrice").innerText
-            };
-            
-            // Сохраняем заказ в память браузера
-            localStorage.setItem('handyman_order', JSON.stringify(orderData));
-            
-            // Переход на новый файл (он должен лежать в той же папке)
-            window.location.href = 'order.html';
-        }
+        // Имитация отправки формы
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Ваша заявка успешно отправлена! Мастер свяжется с вами в ближайшее время.');
+            localStorage.removeItem('handyman_order'); // Очищаем корзину
+            window.location.href = 'index.html'; // Возвращаем на главную
+        });
     </script>
 </body>
 </html>
